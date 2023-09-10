@@ -10,7 +10,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 
-class GameAdapter(private val list : ArrayList<PostResponse>): RecyclerView.Adapter<GameAdapter.ViewHolder>(){
+class GameAdapter(private val list : ArrayList<PostResponse>):
+    RecyclerView.Adapter<GameAdapter.ViewHolder>(){
+
+   private  var onItemclickcallback : onItemclick? = null
+    fun setOnItemclickcallback(onItemclick: onItemclick){
+        this.onItemclickcallback = onItemclick
+    }
     inner class ViewHolder(itemview:View):RecyclerView.ViewHolder(itemview){
         fun bind(postResponse: PostResponse){
             with(itemView){
@@ -24,7 +30,9 @@ class GameAdapter(private val list : ArrayList<PostResponse>): RecyclerView.Adap
                 text.text = "${postResponse.title}"
                 dev.text = "${postResponse.developer}"
 
-
+                itemView.setOnClickListener {
+                    onItemclickcallback?.onItemclicked(postResponse)
+                }
             }
         }
     }
@@ -40,4 +48,7 @@ class GameAdapter(private val list : ArrayList<PostResponse>): RecyclerView.Adap
         holder.bind(list[position])
 
     }
+  interface onItemclick{
+      fun onItemclicked(data:PostResponse)
+  }
 }
