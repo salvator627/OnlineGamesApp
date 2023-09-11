@@ -4,10 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.games.detail.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +37,10 @@ class MainActivity : AppCompatActivity() {
 
                 adapter.setOnItemclickcallback(object : GameAdapter.onItemclick{
                     override fun onItemclicked(data: PostResponse) {
-                        Toast.makeText(this@MainActivity, "hello ${data.title}", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MainActivity,DetailActivity2::class.java)
+                        intent.putExtra("data",data)
+                        startActivity(intent)
+
                     }
 
                 })
