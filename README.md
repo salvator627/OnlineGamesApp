@@ -1,5 +1,5 @@
 # OnlineGamesApp
-List of many online games
+List of many online game
 
 
 ![alt text](https://github.com/salvator627/OnlineGamesApp/blob/master/app/src/main/res/drawable/gh.png?raw=true) 
